@@ -1,7 +1,9 @@
+import { Contents } from "./Components/Contents/Contents";
+
 export default function Home() {
 	return (
 		<>
-			<div>init</div>
+			<Contents />
 		</>
 	);
 }
