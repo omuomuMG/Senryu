@@ -3,7 +3,8 @@ import { doc, setDoc } from "firebase/firestore";
 import { NextPage } from "next";
 import { useRef } from "react";
 import db from "../Firebase";
-db;
+import { useRouter } from "next/navigation";
+
 type Content = {
 	id: string;
 	title: string | undefined;
@@ -14,6 +15,7 @@ type Content = {
 export default function PostContent() {
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);
+	const router = useRouter();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -24,6 +26,9 @@ export default function PostContent() {
 			rating: 4,
 		};
 		await setDoc(doc(db, "user1", newContent?.id as string), newContent);
+		router.push("/");
+		router.refresh();
+		console.log("投稿に成功");
 	};
 	return (
 		<>
