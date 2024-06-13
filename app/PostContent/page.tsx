@@ -28,6 +28,7 @@ export default function PostContent() {
 	return (
 		<>
 			<div>
+				<h1>本を記録</h1>
 				<form onSubmit={handleSubmit}>
 					<label>
 						本の名前:
