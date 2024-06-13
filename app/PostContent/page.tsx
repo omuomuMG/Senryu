@@ -1,8 +1,9 @@
 "use client";
 import { doc, setDoc } from "firebase/firestore";
 import { NextPage } from "next";
-import { useRef, useState } from "react";
-import db from "../../Firebase";
+import { useRef } from "react";
+import db from "../Firebase";
+db;
 type Content = {
 	id: string;
 	title: string | undefined;
@@ -10,7 +11,7 @@ type Content = {
 	rating: number;
 };
 
-export const PostContent: NextPage = () => {
+export default function PostContent() {
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -43,4 +44,4 @@ export const PostContent: NextPage = () => {
 			</div>
 		</>
 	);
-};
+}
