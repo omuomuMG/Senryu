@@ -12,11 +12,10 @@ type Content = {
 };
 
 export const Contents: NextPage = () => {
-	const [blogContents, setBlogContents] = useState<Content[]>([]);
+	const [Contents, setContents] = useState<Content[]>([]);
 
 	useEffect(() => {
 		fetchContents();
-		console.log(process.env.NEXT_PUBLIC_REACT_APP_FIREBASE_APIKEY as string);
 	}, []);
 	const fetchContents = async () => {
 		try {
@@ -26,7 +25,7 @@ export const Contents: NextPage = () => {
 			querySnapShot.forEach((doc) => {
 				contentsData.push(doc.data() as Content);
 			});
-			setBlogContents(contentsData);
+			setContents(contentsData);
 		} catch (e) {
 			console.log("Error featching contents", e);
 		}
@@ -35,7 +34,7 @@ export const Contents: NextPage = () => {
 		<>
 			<div>
 				<h1>Content</h1>
-				{blogContents.map((content) => (
+				{Contents.map((content) => (
 					<>
 						<div>
 							<h2>{content.title}</h2>
