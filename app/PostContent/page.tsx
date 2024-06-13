@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import { useRef } from "react";
 import db from "../Firebase";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 type Content = {
 	id: string;
@@ -19,6 +20,9 @@ export default function PostContent() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		toast.loading("本棚に収納中", {
+			duration: 3000,
+		});
 		const newContent: Content = {
 			body: bodyRef?.current?.value,
 			id: Math.random().toString(32).substring(2),
@@ -26,13 +30,17 @@ export default function PostContent() {
 			rating: 4,
 		};
 		await setDoc(doc(db, "user1", newContent?.id as string), newContent);
+		toast.success("本棚に収納しました！", {
+			duration: 3000,
+		});
+
 		router.push("/");
 		router.refresh();
-		console.log("投稿に成功");
 	};
 	return (
 		<>
 			<div>
+				<Toaster />
 				<h1>本を記録</h1>
 				<form onSubmit={handleSubmit}>
 					<label>
