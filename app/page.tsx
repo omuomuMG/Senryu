@@ -1,9 +1,8 @@
 "use client";
-import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { collection, getDoc, getDocs } from "firebase/firestore";
-import db from "./Firebase";
 import Link from "next/link";
+import db from "./Firebase";
 
 type Content = {
 	id: string;
@@ -14,7 +13,6 @@ type Content = {
 
 export default function Home() {
 	const [Contents, setContents] = useState<Content[]>([]);
-
 	useEffect(() => {
 		fetchContents();
 	}, []);
@@ -43,6 +41,15 @@ export default function Home() {
 							<p>{content.body}</p>
 							<p>{content.rating}</p>
 						</div>
+						<Link
+							href={{
+								pathname: `/EditContent/${content.id}}`,
+								query: {
+									id: content.id,
+									name: content.body,
+								},
+							}}
+						></Link>
 					</>
 				))}
 			</div>
