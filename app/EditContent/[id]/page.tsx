@@ -13,15 +13,9 @@ type Content = {
 };
 
 export default function EditContent() {
-	const titleRef = useRef<HTMLInputElement | null>(null);
+	const titleRef = useRef<HTMLTextAreaElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);
 
-	let getContent: Content = {
-		id: "",
-		title: undefined,
-		body: undefined,
-		rating: 0,
-	};
 	const { id, title, body, rating } = useStore((state) => ({
 		id: state.id,
 		title: state.title,
@@ -36,11 +30,11 @@ export default function EditContent() {
 		});
 		const newContent: Content = {
 			body: bodyRef?.current?.value,
-			id: Math.random().toString(32).substring(2),
+			id: id,
 			title: titleRef?.current?.value,
 			rating: 4,
 		};
-		await updateDoc(doc(db, "user1"), newContent);
+		await updateDoc(doc(db, "user1", newContent?.id as string), newContent);
 		toast.success("本を書き換えました！", {
 			duration: 3000,
 		});
@@ -56,14 +50,21 @@ export default function EditContent() {
 				<form onSubmit={handleSubmit}>
 					<label>
 						本の名前:
-						<input type="text" name="title" ref={titleRef} value={title} />
+						<textarea
+							ref={titleRef}
+							placeholder=""
+							className="rounded-md px-4 py-2 w-full my-2"
+						>
+							{title}
+						</textarea>
 						感想:
 						<textarea
 							ref={bodyRef}
 							placeholder="記事詳細を入力"
 							className="rounded-md px-4 py-2 w-full my-2"
-							value={body}
-						></textarea>
+						>
+							{body}
+						</textarea>
 					</label>
 					<input type="submit" value="Submit" />
 				</form>
