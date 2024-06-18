@@ -1,7 +1,7 @@
 "use client";
 import { doc, updateDoc } from "firebase/firestore";
 import { useRef } from "react";
-import db from "../../Firebase";
+import db from "../Firebase";
 import toast, { Toaster } from "react-hot-toast";
 import { useStore } from "@/app/page";
 import { useRouter } from "next/navigation";

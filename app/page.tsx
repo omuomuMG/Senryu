@@ -67,7 +67,7 @@ export default function Home() {
 						<h2>{content.title}</h2>
 						<p>{content.body}</p>
 						<p>{content.rating}</p>
-						<Link href={`/EditContent/${content.id}`}>
+						<Link href={"/EditContent"}>
 							<button onClick={() => getContent(content)}>Edit</button>
 						</Link>
 					</div>
