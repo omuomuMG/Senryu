@@ -4,6 +4,7 @@ import { useRef } from "react";
 import db from "../../Firebase";
 import toast, { Toaster } from "react-hot-toast";
 import { useStore } from "@/app/page";
+import { useRouter } from "next/navigation";
 
 type Content = {
 	id: string;
@@ -15,6 +16,7 @@ type Content = {
 export default function EditContent() {
 	const titleRef = useRef<HTMLTextAreaElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);
+	const router = useRouter();
 
 	const { id, title, body, rating } = useStore((state) => ({
 		id: state.id,
@@ -38,6 +40,8 @@ export default function EditContent() {
 		toast.success("本を書き換えました！", {
 			duration: 3000,
 		});
+		router.push("/");
+		router.refresh();
 	};
 
 	return (
