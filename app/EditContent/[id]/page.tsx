@@ -1,17 +1,8 @@
 "use client";
-import {
-	collection,
-	doc,
-	getDocs,
-	query,
-	updateDoc,
-	where,
-} from "firebase/firestore";
-import { useEffect, useRef, useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import { useRef } from "react";
 import db from "../../Firebase";
 import toast, { Toaster } from "react-hot-toast";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { useStore } from "@/app/page";
 
 type Content = {
@@ -24,7 +15,6 @@ type Content = {
 export default function EditContent() {
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);
-	const [content, setContent] = useState<Content>();
 
 	let getContent: Content = {
 		id: "",
@@ -41,7 +31,7 @@ export default function EditContent() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		toast.loading("本棚に収納中", {
+		toast.loading("本を書き換え中", {
 			duration: 3000,
 		});
 		const newContent: Content = {
@@ -51,7 +41,7 @@ export default function EditContent() {
 			rating: 4,
 		};
 		await updateDoc(doc(db, "user1"), newContent);
-		toast.success("本棚に収納しました！", {
+		toast.success("本を書き換えました！", {
 			duration: 3000,
 		});
 	};
