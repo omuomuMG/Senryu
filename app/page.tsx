@@ -5,13 +5,6 @@ import Link from "next/link";
 import db from "./Firebase";
 import { create } from "zustand";
 
-type Content = {
-	id: string;
-	title: string;
-	body: string;
-	rating: number;
-};
-
 type ContentState = {
 	id: string;
 	title: string;
@@ -31,7 +24,6 @@ export const useStore = create<ContentState>((set) => ({
 			body: content.body,
 			rating: content.rating,
 		}),
-	feachContet: set((state) => ({})),
 }));
 
 export default function Home() {

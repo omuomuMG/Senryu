@@ -6,13 +6,6 @@ import db from "../Firebase";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
-type Content = {
-	id: string;
-	title: string | undefined;
-	body: string | undefined;
-	rating: number;
-};
-
 export default function PostContent() {
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);

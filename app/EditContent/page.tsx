@@ -6,13 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useStore } from "@/app/page";
 import { useRouter } from "next/navigation";
 
-type Content = {
-	id: string;
-	title: string | undefined;
-	body: string | undefined;
-	rating: number;
-};
-
 export default function EditContent() {
 	const titleRef = useRef<HTMLTextAreaElement | null>(null);
 	const bodyRef = useRef<HTMLTextAreaElement | null>(null);
