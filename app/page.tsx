@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
-import db from "./Firebase";
 import { create } from "zustand";
+import { db } from "./Firebase";
 
 type ContentState = {
 	id: string;

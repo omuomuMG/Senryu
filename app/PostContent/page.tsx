@@ -2,9 +2,9 @@
 import { doc, setDoc } from "firebase/firestore";
 import { NextPage } from "next";
 import { useRef } from "react";
-import db from "../Firebase";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import { db } from "../Firebase";
 
 export default function PostContent() {
 	const titleRef = useRef<HTMLInputElement | null>(null);
