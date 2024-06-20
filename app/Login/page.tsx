@@ -16,11 +16,13 @@ export default function Login() {
 		await signInWithPopup(auth, GoogleProvider);
 	};
 
-	const [user] = useAuthState(auth);
-
-	useEffect(() => {
-		console.log(user);
-	}, []);
+	const [lognined] = useAuthState(auth);
+	const [userId, setUserId] = useState("");
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+			setUserId(user.uid);
+		}
+	});
 
 	return (
 		<main className="h-screen bg-yellow-300 pt-10">
@@ -40,7 +42,7 @@ export default function Login() {
 							GitHubでログイン
 						</button>
 					</div>
-					<div>{user ? <p>ろぐいんんずむ</p> : <p>ずむくない</p>}</div>;
+					<div>{lognined ? <p>ろぐいんんずむ</p> : <p>ずむくない</p>}</div>;
 				</div>
 			</div>
 		</main>

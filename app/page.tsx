@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import { create } from "zustand";
-import { db } from "./Firebase";
+import { auth, db } from "./Firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 type ContentState = {
 	id: string;
@@ -29,8 +30,11 @@ export const useStore = create<ContentState>((set) => ({
 export default function Home() {
 	const [contents, setContents] = useState<Content[]>([]);
 
+	const [user] = useAuthState(auth);
+
 	useEffect(() => {
 		fetchContents();
+		console.log(user);
 	}, []);
 
 	const fetchContents = async () => {
