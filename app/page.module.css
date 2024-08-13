@@ -1,0 +1,12 @@
+.contentTitle {
+  text-align: center;
+}
+
+.contents {
+  text-align: center;
+}
+.content {
+  padding: 2em;
+  border-radius: 30px 60px/60px 30px;
+  border: solid 8px #ccc7be;
+}

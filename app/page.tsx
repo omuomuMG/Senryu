@@ -6,6 +6,9 @@ import { create } from "zustand";
 import { auth, db } from "./Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./Login/page";
+import styles from "./page.module.css";
+import { Header } from "./Header/Header";
+import Head from "next/head";
 
 type ContentState = {
   id: string;
@@ -58,19 +61,26 @@ export default function Home() {
   return (
     <>
       <div>
-        <Login></Login>
+        <Head>
+          <title>aaaaaa</title>
+        </Head>
+        <Login />
         <Link href={{ pathname: "/PostContent" }}>a</Link>
-        <h1>Content</h1>
-        {contents.map((content) => (
-          <div key={content.id}>
-            <h2>{content.title}</h2>
-            <p>{content.body}</p>
-            <p>{content.rating}</p>
-            <Link href={"/EditContent"}>
-              <button onClick={() => getContent(content)}>Edit</button>
-            </Link>
+        <div className="content-wrapper">
+          <h1 className={styles.contentTitle}>Content</h1>
+          <div className={styles.contents}>
+            {contents.map((content) => (
+              <div key={content.id} className={styles.content}>
+                <h2>{content.title}</h2>
+                <p>{content.body}</p>
+                <p>{content.rating}</p>
+                <Link href={"/EditContent"}>
+                  <button onClick={() => getContent(content)}>Edit</button>
+                </Link>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </>
   );
