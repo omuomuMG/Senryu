@@ -1,39 +1,18 @@
-.header h1 {
-  display: inline-block;
-}
-
 .contentTitle {
   text-align: center;
 }
 
 .contents {
   text-align: center;
-  margin-left: 30%;
 }
 
-.boxmi4 {
-  align-items: center;
-
-  width: 50%;
-  background-color: #fff;
-  background-image: linear-gradient(
-      90deg,
-      rgba(237, 119, 128, 0) 0%,
-      rgba(237, 119, 128, 0) 50%,
-      #fff 0%,
-      #fff 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(237, 119, 128, 0) 0%,
-      rgba(237, 119, 128, 0) 95%,
-      black 100%
-    );
-  background-size: 8px 100%, 100% 2em;
-  line-height: 2;
-  border: solid 2px;
-  padding: 2em 1em 1.98em 1em;
-  color: black;
-  margin: 2em 0;
-  font-weight: bold;
+.content {
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  writing-mode: vertical-rl;
+  flex-flow: column;
+  display: block;
+  background-color: aqua;
 }
