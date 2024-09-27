@@ -5,10 +5,15 @@ import Link from "next/link";
 import { create } from "zustand";
 import { auth, db } from "./Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Login from "./Login/page";
 import styles from "./page.module.css";
-import { Header } from "./Header/Header";
-import Head from "next/head";
+import Header from "./Header/header";
+import { Klee_One } from "next/font/google";
+//川柳のSNS
+
+const Yuji_Syuku_Font = Klee_One({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 type ContentState = {
   id: string;
@@ -61,12 +66,11 @@ export default function Home() {
   return (
     <>
       <div>
-        <Head>
-          <title>aaaaaa</title>
-        </Head>
-        <Login />
-        <Link href={{ pathname: "/PostContent" }}>a</Link>
-        <div className="content-wrapper">
+        <Header />
+
+        <Link href={{ pathname: "/PostContent" }}>日記を書く</Link>
+
+        <div className={Yuji_Syuku_Font.className}>
           <h1 className={styles.contentTitle}>Content</h1>
           <div className={styles.contents}>
             {contents.map((content) => (
@@ -75,7 +79,7 @@ export default function Home() {
                 <p>{content.body}</p>
                 <p>{content.rating}</p>
                 <Link href={"/EditContent"}>
-                  <button onClick={() => getContent(content)}>Edit</button>
+                  <button onClick={() => getContent(content)}>編</button>
                 </Link>
               </div>
             ))}
