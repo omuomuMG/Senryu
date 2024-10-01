@@ -10,9 +10,9 @@ export default function PostContent() {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const bodyRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const firstPartRef = useRef<HTMLInputElement | null>(null);
-  const midlePartRef = useRef<HTMLInputElement | null>(null);
-  const lastPartRef = useRef<HTMLInputElement | null>(null);
+  const firstPartRef = useRef<HTMLTextAreaElement | null>(null);
+  const midlePartRef = useRef<HTMLTextAreaElement | null>(null);
+  const lastPartRef = useRef<HTMLTextAreaElement | null>(null);
 
   const router = useRouter();
 
@@ -57,11 +57,23 @@ export default function PostContent() {
               className="rounded-md px-4 py-2 w-full my-2"
             ></textarea>
             上:
-            <input type="text" name="first" ref={firstPartRef} />
+            <textarea
+              ref={firstPartRef}
+              placeholder="記事詳細を入力"
+              className="rounded-md px-4 py-2 w-full my-2"
+            ></textarea>
             中:
-            <input type="text" name="midle" ref={midlePartRef} />
+            <textarea
+              ref={midlePartRef}
+              placeholder="記事詳細を入力"
+              className="rounded-md px-4 py-2 w-full my-2"
+            ></textarea>
             下:
-            <input type="text" name="last" ref={lastPartRef} />
+            <textarea
+              ref={lastPartRef}
+              placeholder="記事詳細を入力"
+              className="rounded-md px-4 py-2 w-full my-2"
+            ></textarea>
           </label>
           <input type="submit" value="Submit" />
         </form>
