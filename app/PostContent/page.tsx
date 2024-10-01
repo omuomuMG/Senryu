@@ -9,6 +9,11 @@ import { db } from "../Firebase";
 export default function PostContent() {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const bodyRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const firstPartRef = useRef<HTMLInputElement | null>(null);
+  const midlePartRef = useRef<HTMLInputElement | null>(null);
+  const lastPartRef = useRef<HTMLInputElement | null>(null);
+
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -21,11 +26,14 @@ export default function PostContent() {
       id: Math.random().toString(32).substring(2),
       title: titleRef?.current?.value,
       rating: 4,
-      firstPart: "",
-      midlePart: "",
-      lastPart: "",
+      firstPart: firstPartRef?.current?.value,
+      midlePart: midlePartRef?.current?.value,
+      lastPart: lastPartRef?.current?.value,
     };
-    await setDoc(doc(db, "user1", newContent?.id as string), newContent);
+    await setDoc(
+      doc(db, "all", "user01", "poem1", newContent?.id as string),
+      newContent
+    );
     toast.success("本棚に収納しました！", {
       duration: 3000,
     });
@@ -37,7 +45,7 @@ export default function PostContent() {
     <>
       <div>
         <Toaster />
-        <h1>本を記録</h1>
+        <h1>詩を記録</h1>
         <form onSubmit={handleSubmit}>
           <label>
             本の名前:
@@ -48,6 +56,12 @@ export default function PostContent() {
               placeholder="記事詳細を入力"
               className="rounded-md px-4 py-2 w-full my-2"
             ></textarea>
+            上:
+            <input type="text" name="first" ref={firstPartRef} />
+            中:
+            <input type="text" name="midle" ref={midlePartRef} />
+            下:
+            <input type="text" name="last" ref={lastPartRef} />
           </label>
           <input type="submit" value="Submit" />
         </form>
