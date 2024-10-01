@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import { create } from "zustand";
 import { auth, db } from "./Firebase";
@@ -20,6 +20,9 @@ type ContentState = {
   title: string;
   body: string;
   rating: number;
+  firstPart: string | undefined;
+  midlePart: string | undefined;
+  lastPart: string | undefined;
   getContent: (content: Content) => void;
 };
 
@@ -28,12 +31,18 @@ export const useStore = create<ContentState>((set) => ({
   title: "",
   body: "",
   rating: 0,
+  firstPart: "",
+  midlePart: "",
+  lastPart: "",
   getContent: (content: Content) =>
     set({
       id: content.id,
       title: content.title,
       body: content.body,
       rating: content.rating,
+      firstPart: content.firstPart,
+      midlePart: content.midlePart,
+      lastPart: content.lastPart,
     }),
 }));
 
@@ -44,20 +53,22 @@ export default function Home() {
 
   useEffect(() => {
     fetchContents();
-    console.log(user);
   }, []);
 
   const fetchContents = async () => {
     try {
-      const contentsCollectionRef = collection(db, "user1");
-      const querySnapShot = await getDocs(contentsCollectionRef);
+      const userCollectionRef = collection(db, "all", "user01", "poem1");
+      const poemSnapShot = await getDocs(userCollectionRef);
+
       const contentsData: Content[] = [];
-      querySnapShot.forEach((doc) => {
+
+      poemSnapShot.forEach((doc) => {
         contentsData.push({ id: doc.id, ...doc.data() } as Content);
       });
+
       setContents(contentsData);
     } catch (e) {
-      console.log("Error fetching contents", e);
+      console.log("Error fetching user poems", e);
     }
   };
 
@@ -67,17 +78,15 @@ export default function Home() {
     <>
       <div>
         <Header />
-
         <Link href={{ pathname: "/PostContent" }}>日記を書く</Link>
-
         <div className={Yuji_Syuku_Font.className}>
           <h1 className={styles.contentTitle}>Content</h1>
           <div className={styles.contents}>
             {contents.map((content) => (
               <div key={content.id} className={styles.content}>
-                <h2>{content.title}</h2>
-                <p>{content.body}</p>
-                <p>{content.rating}</p>
+                <p>{content.firstPart}</p>
+                <p>{content.midlePart}</p>
+                <p>{content.lastPart}</p>
                 <Link href={"/EditContent"}>
                   <button onClick={() => getContent(content)}>編</button>
                 </Link>
