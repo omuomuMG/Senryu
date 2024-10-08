@@ -18,7 +18,7 @@ export default function PostContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.loading("本棚に収納中", {
+    toast.loading("詩を記録中", {
       duration: 3000,
     });
     const newContent: Content = {
@@ -48,14 +48,6 @@ export default function PostContent() {
         <h1>詩を記録</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            本の名前:
-            <input type="text" name="title" ref={titleRef} />
-            感想:
-            <textarea
-              ref={bodyRef}
-              placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
-            ></textarea>
             上:
             <textarea
               ref={firstPartRef}

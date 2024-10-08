@@ -46,7 +46,7 @@ export default function EditContent() {
       doc(db, "all", "user01", "poem1", newContent?.id as string),
       newContent
     );
-    toast.success("本を書き換えました！", {
+    toast.success("詩を書き換えました", {
       duration: 3000,
     });
     router.push("/");
@@ -60,23 +60,9 @@ export default function EditContent() {
         <h1>{body}</h1>
         <h1>{firstPart}</h1>
         <Toaster />
-        <h1>本を記録</h1>
+        <h1>詩を記録</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            本の名前:
-            <textarea
-              ref={titleRef}
-              placeholder=""
-              className="rounded-md px-4 py-2 w-full my-2"
-            >
-              {title}
-            </textarea>
-            感想:
-            <textarea
-              ref={bodyRef}
-              placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
-            ></textarea>
             上:
             <textarea
               ref={firstPartRef}

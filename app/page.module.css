@@ -15,4 +15,5 @@
   flex-flow: column;
   display: block;
   background-color: aqua;
+  text-align: left;
 }

@@ -84,9 +84,9 @@ export default function Home() {
           <div className={styles.contents}>
             {contents.map((content) => (
               <div key={content.id} className={styles.content}>
-                <p>{content.firstPart}</p>
-                <p>{content.midlePart}</p>
-                <p>{content.lastPart}</p>
+                <p className={styles.firstPart}>{content.firstPart}</p>
+                <p className={styles.midlePart}>{content.midlePart}</p>
+                <p className={styles.lastPart}>{content.lastPart}</p>
                 <Link href={"/EditContent"}>
                   <button onClick={() => getContent(content)}>編</button>
                 </Link>

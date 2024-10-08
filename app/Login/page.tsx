@@ -7,8 +7,27 @@ import {
 import { auth } from "../Firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-// const Login = () => {
+const [userId, setUserId] = useState("");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    setUserId(user.uid);
+  }
+});
+// type UserID = { id: string };
+// const useBearsStore = create<UserID>()(
+//   persist(
+//     (set) => ({
+//       id: userId,
+//     }),
+//     {
+//       name: "bear-storage",
+//     }
+//   )
+// );
+
 export default function Login() {
   const GoogleProvider = new GoogleAuthProvider();
 
@@ -17,12 +36,6 @@ export default function Login() {
   };
 
   const [lognined] = useAuthState(auth);
-  const [userId, setUserId] = useState("");
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUserId(user.uid);
-    }
-  });
 
   return (
     <main className="h-screen bg-yellow-300 pt-10">
