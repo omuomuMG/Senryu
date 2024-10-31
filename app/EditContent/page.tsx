@@ -16,12 +16,11 @@ export default function EditContent() {
 
   const router = useRouter();
 
-  const { id, title, body, rating, firstPart, midlePart, lastPart } = useStore(
+  const { id, title, body, firstPart, midlePart, lastPart } = useStore(
     (state) => ({
       id: state.id,
       title: state.title,
       body: state.body,
-      rating: state.rating,
       firstPart: state.firstPart,
       midlePart: state.midlePart,
       lastPart: state.lastPart,
@@ -37,7 +36,6 @@ export default function EditContent() {
       body: bodyRef?.current?.value,
       id: id,
       title: titleRef?.current?.value,
-      rating: 4,
       firstPart: firstPartRef?.current?.value,
       midlePart: midlePartRef?.current?.value,
       lastPart: lastPartRef?.current?.value,

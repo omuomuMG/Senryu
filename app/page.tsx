@@ -19,7 +19,6 @@ type ContentState = {
   id: string;
   title: string;
   body: string;
-  rating: number;
   firstPart: string | undefined;
   midlePart: string | undefined;
   lastPart: string | undefined;
@@ -39,7 +38,6 @@ export const useStore = create<ContentState>((set) => ({
       id: content.id,
       title: content.title,
       body: content.body,
-      rating: content.rating,
       firstPart: content.firstPart,
       midlePart: content.midlePart,
       lastPart: content.lastPart,
