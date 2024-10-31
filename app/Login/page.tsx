@@ -1,32 +1,8 @@
 "use client";
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase";
-import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-
-const [userId, setUserId] = useState("");
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    setUserId(user.uid);
-  }
-});
-// type UserID = { id: string };
-// const useBearsStore = create<UserID>()(
-//   persist(
-//     (set) => ({
-//       id: userId,
-//     }),
-//     {
-//       name: "bear-storage",
-//     }
-//   )
-// );
+import { useEffect } from "react";
 
 export default function Login() {
   const GoogleProvider = new GoogleAuthProvider();
@@ -36,6 +12,11 @@ export default function Login() {
   };
 
   const [lognined] = useAuthState(auth);
+
+  useEffect(() => {
+    localStorage.setItem("uid", JSON.stringify(auth.currentUser?.uid));
+    console.log(localStorage.getItem("uid"));
+  }, [auth.currentUser?.uid]);
 
   return (
     <main className="h-screen bg-yellow-300 pt-10">

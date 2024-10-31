@@ -49,24 +49,29 @@ export const useStore = create<ContentState>((set) => ({
 export default function Home() {
   const [contents, setContents] = useState<Content[]>([]);
 
-  const [user] = useAuthState(auth);
-
   useEffect(() => {
     fetchContents();
   }, []);
 
   const fetchContents = async () => {
     try {
-      const userCollectionRef = collection(db, "all", "user01", "poem1");
-      const poemSnapShot = await getDocs(userCollectionRef);
+      const uid = JSON.parse(localStorage.getItem("uid") || '""');
+      if (uid) {
+        console.log(uid);
+        const userCollectionRef = collection(db, "all", uid, "poem1");
 
-      const contentsData: Content[] = [];
+        const poemSnapShot = await getDocs(userCollectionRef);
 
-      poemSnapShot.forEach((doc) => {
-        contentsData.push({ id: doc.id, ...doc.data() } as Content);
-      });
+        const contentsData: Content[] = [];
 
-      setContents(contentsData);
+        poemSnapShot.forEach((doc) => {
+          contentsData.push({ id: doc.id, ...doc.data() } as Content);
+        });
+
+        setContents(contentsData);
+      } else {
+        console.log("erorr:" + uid);
+      }
     } catch (e) {
       console.log("Error fetching user poems", e);
     }
