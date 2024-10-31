@@ -1,5 +1,5 @@
 "use client";
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, doc, setDoc } from "firebase/firestore";
 import { NextPage } from "next";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,6 @@ import { db } from "../Firebase";
 
 export default function PostContent() {
   const titleRef = useRef<HTMLInputElement | null>(null);
-  const bodyRef = useRef<HTMLTextAreaElement | null>(null);
 
   const firstPartRef = useRef<HTMLTextAreaElement | null>(null);
   const midlePartRef = useRef<HTMLTextAreaElement | null>(null);
@@ -22,16 +21,16 @@ export default function PostContent() {
       duration: 3000,
     });
     const newContent: Content = {
-      body: bodyRef?.current?.value,
+      body: "aaa",
+      title: "aaa", //消してもいいかも
       id: Math.random().toString(32).substring(2),
-      title: titleRef?.current?.value,
-      rating: 4,
       firstPart: firstPartRef?.current?.value,
       midlePart: midlePartRef?.current?.value,
       lastPart: lastPartRef?.current?.value,
     };
+    const uid = JSON.parse(localStorage.getItem("uid") || '""');
     await setDoc(
-      doc(db, "all", "user01", "poem1", newContent?.id as string),
+      doc(db, "all", uid, "poem1", newContent?.id as string),
       newContent
     );
     toast.success("本棚に収納しました！", {
