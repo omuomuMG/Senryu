@@ -33,11 +33,11 @@ export default function EditContent() {
       duration: 3000,
     });
     const newContent: Content = {
-      body: bodyRef?.current?.value || "", // Default to empty string if undefined
+      body: bodyRef?.current?.value || "",
       id: id,
       title: titleRef?.current?.value || "",
       firstPart: firstPartRef?.current?.value || "",
-      middlePart: middlePartRef?.current?.value || "", // Corrected typo here
+      middlePart: middlePartRef?.current?.value || "",
       lastPart: lastPartRef?.current?.value || "",
     };
 
