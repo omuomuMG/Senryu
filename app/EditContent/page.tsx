@@ -56,9 +56,6 @@ export default function EditContent() {
   return (
     <>
       <div>
-        <h1>{id}</h1>
-        <h1>{body}</h1>
-        <h1>{firstPart}</h1>
         <Toaster />
         <h1>詩を記録</h1>
         <form onSubmit={handleSubmit}>

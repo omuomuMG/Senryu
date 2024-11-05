@@ -16,4 +16,23 @@
   display: block;
   background-color: aqua;
   text-align: left;
+  height: 30%;
+}
+
+.firstPart {
+  padding-top: 15%;
+}
+
+.middlePart {
+  padding-top: 25%;
+}
+
+.lastPart {
+  padding-top: 35%;
+}
+
+.editButton {
+  background: transparent;
+  border: none;
+  outline: none;
 }
