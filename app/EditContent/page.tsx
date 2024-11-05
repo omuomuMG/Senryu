@@ -22,7 +22,7 @@ export default function EditContent() {
       title: state.title,
       body: state.body,
       firstPart: state.firstPart,
-      middlePart: state.midlePart,
+      middlePart: state.middlePart,
       lastPart: state.lastPart,
     })
   );

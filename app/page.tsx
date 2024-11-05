@@ -20,7 +20,7 @@ type ContentState = {
   title: string;
   body: string;
   firstPart: string | undefined;
-  midlePart: string | undefined;
+  middlePart: string | undefined;
   lastPart: string | undefined;
   getContent: (content: Content) => void;
 };
@@ -31,7 +31,7 @@ export const useStore = create<ContentState>((set) => ({
   body: "",
   rating: 0,
   firstPart: "",
-  midlePart: "",
+  middlePart: "",
   lastPart: "",
   getContent: (content: Content) =>
     set({
@@ -39,7 +39,7 @@ export const useStore = create<ContentState>((set) => ({
       title: content.title,
       body: content.body,
       firstPart: content.firstPart,
-      midlePart: content.midlePart,
+      middlePart: content.middlePart,
       lastPart: content.lastPart,
     }),
 }));
@@ -88,7 +88,7 @@ export default function Home() {
             {contents.map((content) => (
               <div key={content.id} className={styles.content}>
                 <p className={styles.firstPart}>{content.firstPart}</p>
-                <p className={styles.midlePart}>{content.midlePart}</p>
+                <p className={styles.middlePart}>{content.middlePart}</p>
                 <p className={styles.lastPart}>{content.lastPart}</p>
                 <Link href={"/EditContent"}>
                   <button onClick={() => getContent(content)}>編</button>
