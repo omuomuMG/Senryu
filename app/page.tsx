@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./page.module.css";
 import Header from "./Header/header";
 import { Klee_One } from "next/font/google";
+import { MaterialSymbolsEditSquare } from "./Icons/edit";
 //川柳のSNS
 
 const Yuji_Syuku_Font = Klee_One({
@@ -81,7 +82,7 @@ export default function Home() {
     <>
       <div>
         <Header />
-        <Link href={{ pathname: "/PostContent" }}>日記を書く</Link>
+        <Link href={{ pathname: "/PostContent" }}>川柳を書く</Link>
         <div className={Yuji_Syuku_Font.className}>
           <h1 className={styles.contentTitle}>Content</h1>
           <div className={styles.contents}>
@@ -91,7 +92,12 @@ export default function Home() {
                 <p className={styles.middlePart}>{content.middlePart}</p>
                 <p className={styles.lastPart}>{content.lastPart}</p>
                 <Link href={"/EditContent"}>
-                  <button onClick={() => getContent(content)}>編</button>
+                  <button
+                    className={styles.editButton}
+                    onClick={() => getContent(content)}
+                  >
+                    <MaterialSymbolsEditSquare />
+                  </button>
                 </Link>
               </div>
             ))}
