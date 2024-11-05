@@ -11,18 +11,18 @@ export default function EditContent() {
   const bodyRef = useRef<HTMLTextAreaElement | null>(null);
 
   const firstPartRef = useRef<HTMLTextAreaElement | null>(null);
-  const midlePartRef = useRef<HTMLTextAreaElement | null>(null);
+  const middlePartRef = useRef<HTMLTextAreaElement | null>(null);
   const lastPartRef = useRef<HTMLTextAreaElement | null>(null);
 
   const router = useRouter();
 
-  const { id, title, body, firstPart, midlePart, lastPart } = useStore(
+  const { id, title, body, firstPart, middlePart, lastPart } = useStore(
     (state) => ({
       id: state.id,
       title: state.title,
       body: state.body,
       firstPart: state.firstPart,
-      midlePart: state.midlePart,
+      middlePart: state.midlePart,
       lastPart: state.lastPart,
     })
   );
@@ -33,15 +33,17 @@ export default function EditContent() {
       duration: 3000,
     });
     const newContent: Content = {
-      body: bodyRef?.current?.value,
+      body: bodyRef?.current?.value || "", // Default to empty string if undefined
       id: id,
-      title: titleRef?.current?.value,
-      firstPart: firstPartRef?.current?.value,
-      midlePart: midlePartRef?.current?.value,
-      lastPart: lastPartRef?.current?.value,
+      title: titleRef?.current?.value || "",
+      firstPart: firstPartRef?.current?.value || "",
+      middlePart: middlePartRef?.current?.value || "", // Corrected typo here
+      lastPart: lastPartRef?.current?.value || "",
     };
+
+    const uid = JSON.parse(localStorage.getItem("uid") || '""');
     await updateDoc(
-      doc(db, "all", "user01", "poem1", newContent?.id as string),
+      doc(db, "all", uid, "poem1", newContent?.id as string),
       newContent
     );
     toast.success("詩を書き換えました", {
@@ -71,11 +73,11 @@ export default function EditContent() {
             </textarea>
             中:
             <textarea
-              ref={midlePartRef}
+              ref={middlePartRef}
               placeholder="記事詳細を入力"
               className="rounded-md px-4 py-2 w-full my-2"
             >
-              {midlePart}
+              {middlePart}
             </textarea>
             下:
             <textarea
