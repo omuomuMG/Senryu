@@ -3,6 +3,6 @@ type Content = {
   title: string | undefined;
   body: string | undefined;
   firstPart: string | undefined;
-  midlePart: string | undefined;
+  middlePart: string | undefined;
   lastPart: string | undefined;
 };

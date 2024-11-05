@@ -25,7 +25,7 @@ export default function PostContent() {
       title: "aaa", //消してもいいかも
       id: Math.random().toString(32).substring(2),
       firstPart: firstPartRef?.current?.value,
-      midlePart: midlePartRef?.current?.value,
+      middlePart: midlePartRef?.current?.value,
       lastPart: lastPartRef?.current?.value,
     };
     const uid = JSON.parse(localStorage.getItem("uid") || '""');
