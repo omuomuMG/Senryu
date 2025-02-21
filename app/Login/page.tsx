@@ -3,6 +3,8 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
+import styles from "./Login.module.css";
+import Header from "../Header/header";
 
 export default function Login() {
   const GoogleProvider = new GoogleAuthProvider();
@@ -19,24 +21,33 @@ export default function Login() {
   }, [auth.currentUser?.uid]);
 
   return (
-    <main className="h-screen bg-yellow-300 pt-10">
-      <div className="container mx-auto">
-        <div className="bg-white shadow-md rounded-md py-12">
-          <p className="mb-5 text-center">
-            好きなアカウントでのログインを行なってください
+    <main className={styles.mainContainer}>
+      <div className={styles.container}>
+        <div className={styles.loginBox}>
+          <h2 className={styles.title}>ログイン</h2>
+          <div className={styles.decorativeLine}></div>
+
+          <p className={styles.description}>
+            アカウントを選択してログインしてください
           </p>
-          <div className="flex gap-3 flex-col items-center">
-            <button
-              className="bg-white w-max border border-black py-2 px-4 rounded"
-              onClick={signInWithGoogle}
-            >
-              Googleでログイン
+
+          <div className={styles.buttonContainer}>
+            <button className={styles.loginButton} onClick={signInWithGoogle}>
+              <span className={styles.buttonText}>Googleでログイン</span>
             </button>
-            <button className="bg-black text-white w-max border border-black py-2 px-4 rounded">
-              GitHubでログイン
+
+            <button className={styles.loginButton}>
+              <span className={styles.buttonText}>GitHubでログイン</span>
             </button>
           </div>
-          <div>{lognined ? <p>ろぐいんんずむ</p> : <p>ずむくない</p>}</div>
+
+          <div className={styles.statusContainer}>
+            {lognined ? (
+              <p className={styles.statusText}>ログイン済み</p>
+            ) : (
+              <p className={styles.statusText}>ログインしてください！</p>
+            )}
+          </div>
         </div>
       </div>
     </main>
