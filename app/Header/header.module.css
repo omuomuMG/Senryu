@@ -1,13 +1,125 @@
 .header {
-  display: flex;
-  align-items: center;
-  border-bottom: solid;
-  margin-top: 0;
-}
-.header :link {
-  text-decoration: none;
+  background-color: #f7f3e9;
+  border-bottom: 1px solid #d4c9b9;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.login {
-  margin: 0 5% 0 auto;
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleLink {
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.titleLink:hover {
+  opacity: 0.8;
+}
+
+.title {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", serif;
+  color: #4a3831;
+  font-size: 1.8rem;
+  margin: 0;
+  position: relative;
+  padding: 0 1rem;
+}
+
+/* タイトルの装飾 */
+.title::before,
+.title::after {
+  content: "〜";
+  position: absolute;
+  color: #8b4513;
+  font-size: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.title::before {
+  left: -1rem;
+}
+
+.title::after {
+  right: -1rem;
+}
+
+.loginContainer {
+  position: relative;
+}
+
+.loginLink {
+  text-decoration: none;
+  color: #4a3831;
+  font-family: "游ゴシック", YuGothic, sans-serif;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #8b4513;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.loginLink::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px solid #8b4513;
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.loginLink:hover {
+  background-color: #ebe5d9;
+}
+
+.loginLink:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .loginLink {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(45deg, #d4c9b9 25%, transparent 25%),
+    linear-gradient(-45deg, #d4c9b9 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d4c9b9 75%),
+    linear-gradient(-45deg, transparent 75%, #d4c9b9 75%);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  pointer-events: none;
 }
