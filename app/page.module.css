@@ -1,38 +1,114 @@
 .contentTitle {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .contents {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
 }
 
 .content {
-  margin-top: 10px;
-  margin-right: auto;
-  margin-left: auto;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-color: #f7f3e9;
+  border: 1px solid #d4c9b9;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   writing-mode: vertical-rl;
-  flex-flow: column;
-  display: block;
-  background-color: aqua;
-  text-align: left;
-  height: 30%;
+  text-orientation: upright;
+  transition: transform 0.2s ease;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid #d4c9b9;
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.firstPart,
+.middlePart,
+.lastPart {
+  position: absolute;
+  font-size: 1.5rem;
+  line-height: 2;
+  margin: 0;
+  color: #333;
+  writing-mode: vertical-rl;
 }
 
 .firstPart {
-  padding-top: 15%;
+  right: 25%;
+  top: 25%;
 }
 
 .middlePart {
-  padding-top: 25%;
+  right: 45%;
+  top: 30%;
 }
 
 .lastPart {
-  padding-top: 35%;
+  right: 65%;
+  top: 35%;
 }
 
 .editButton {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
   background: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.editButton:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 250px;
+    height: 350px;
+  }
+
+  .firstPart,
+  .middlePart,
+  .lastPart {
+    font-size: 1.2rem;
+  }
+
+  .firstPart {
+    right: 25%;
+  }
+
+  .middlePart {
+    right: 45%;
+  }
+
+  .lastPart {
+    right: 65%;
+  }
 }

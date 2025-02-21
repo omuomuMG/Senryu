@@ -9,7 +9,6 @@ import styles from "./page.module.css";
 import Header from "./Header/header";
 import { Klee_One } from "next/font/google";
 import { MaterialSymbolsEditSquare } from "./Icons/edit";
-//川柳のSNS
 
 const Yuji_Syuku_Font = Klee_One({
   weight: "400",
