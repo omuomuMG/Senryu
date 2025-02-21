@@ -17,7 +17,6 @@ export default function SignOut() {
         {user ? (
           <p className={styles.statusText}>ログイン中</p>
         ) : (
-          // <p className={styles.statusText}>ログアウトされました</p>
           <Link href={{ pathname: "/" }}>ホームへ戻る</Link>
         )}
       </div>
