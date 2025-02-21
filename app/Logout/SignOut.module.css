@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.signOutButton {
+  position: relative;
+  background-color: #f7f3e9;
+  border: 1px solid #8b4513;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.signOutButton::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid #8b4513;
+  pointer-events: none;
+}
+
+.buttonText {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "HG明朝E", serif;
+  color: #4a3831;
+}
+
+.signOutButton:hover {
+  background-color: #ebe5d9;
+  transform: translateY(-2px);
+}
+
+.signOutButton:active {
+  transform: translateY(0);
+}
+
+.statusContainer {
+  background-color: #f7f3e9;
+  border: 1px solid #8b4513;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.statusText {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "HG明朝E", serif;
+  color: #4a3831;
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.container::before,
+.container::after {
+  content: "❀";
+  color: #8b4513;
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .signOutButton {
+    min-width: 120px;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .buttonText {
+    font-size: 0.9rem;
+  }
+}
