@@ -26,6 +26,11 @@
   writing-mode: vertical-rl;
   text-orientation: upright;
   transition: transform 0.2s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .content::before {
@@ -37,13 +42,6 @@
   bottom: 10px;
   border: 1px solid #d4c9b9;
   pointer-events: none;
-}
-
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
 
 .createButton {
@@ -157,8 +155,6 @@
   }
 }
 
-/* 既存のCSSに追加 */
-
 .buttonContainer {
   position: absolute;
   bottom: 1rem;
@@ -186,7 +182,6 @@
   color: #d32f2f;
 }
 
-/* モーダル関連のスタイル */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -255,6 +250,14 @@
 .confirmButton:hover {
   background-color: #b71c1c;
 }
+.buttonGroup {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
 
 @keyframes modalFadeIn {
   from {
@@ -267,7 +270,6 @@
   }
 }
 
-/* レスポンシブ対応 */
 @media (max-width: 768px) {
   .modalContent {
     width: 95%;
