@@ -29,7 +29,7 @@ export default function EditContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.loading("本を書き換え中", {
+    toast.loading("詩を書き換え中", {
       duration: 3000,
     });
     const newContent: Content = {
