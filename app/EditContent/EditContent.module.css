@@ -1,0 +1,177 @@
+.container {
+  min-height: 100vh;
+  background-color: #f7f3e9;
+  padding: 2rem;
+}
+
+.formContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 1px solid #d4c9b9;
+}
+
+.formContainer::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid #d4c9b9;
+  pointer-events: none;
+}
+
+.backLink {
+  display: inline-block;
+  text-decoration: none;
+  color: #8b4513;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+}
+
+.backLink:hover {
+  color: #9b5523;
+}
+
+.title {
+  text-align: center;
+  font-family: "游明朝", YuMincho, serif;
+  color: #4a3831;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: #8b4513;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-family: "游ゴシック", YuGothic, sans-serif;
+  color: #4a3831;
+  font-size: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #d4c9b9;
+  border-radius: 4px;
+  font-family: "游明朝", YuMincho, serif;
+  font-size: 1.1rem;
+  resize: vertical;
+  min-height: 60px;
+  background-color: #fdfbf7;
+  transition: all 0.3s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #8b4513;
+  box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.submitButton,
+.cancelButton {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-family: "游ゴシック", YuGothic, sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.submitButton {
+  background-color: #8b4513;
+  color: #fff;
+}
+
+.cancelButton {
+  background-color: #f5f5f5;
+  color: #4a3831;
+  border: 1px solid #d4c9b9;
+}
+
+.submitButton::before,
+.cancelButton::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.submitButton:hover {
+  background-color: #9b5523;
+  transform: translateY(-2px);
+}
+
+.cancelButton:hover {
+  background-color: #ebe5d9;
+  transform: translateY(-2px);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .formContainer {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .textarea {
+    font-size: 1rem;
+  }
+
+  .submitButton,
+  .cancelButton {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+}

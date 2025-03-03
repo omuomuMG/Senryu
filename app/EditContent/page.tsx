@@ -5,37 +5,32 @@ import { db } from "../Firebase";
 import toast, { Toaster } from "react-hot-toast";
 import { useStore } from "@/app/page";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import styles from "./EditContent.module.css";
 
 export default function EditContent() {
-  const titleRef = useRef<HTMLTextAreaElement | null>(null);
-  const bodyRef = useRef<HTMLTextAreaElement | null>(null);
-
   const firstPartRef = useRef<HTMLTextAreaElement | null>(null);
   const middlePartRef = useRef<HTMLTextAreaElement | null>(null);
   const lastPartRef = useRef<HTMLTextAreaElement | null>(null);
 
   const router = useRouter();
 
-  const { id, title, body, firstPart, middlePart, lastPart } = useStore(
-    (state) => ({
-      id: state.id,
-      title: state.title,
-      body: state.body,
-      firstPart: state.firstPart,
-      middlePart: state.middlePart,
-      lastPart: state.lastPart,
-    })
-  );
+  const { id, firstPart, middlePart, lastPart } = useStore((state) => ({
+    id: state.id,
+    firstPart: state.firstPart,
+    middlePart: state.middlePart,
+    lastPart: state.lastPart,
+  }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.loading("詩を書き換え中", {
+    toast.loading("川柳を編集中...", {
       duration: 3000,
     });
     const newContent: Content = {
-      body: bodyRef?.current?.value || "",
+      body: "aaa",
       id: id,
-      title: titleRef?.current?.value || "",
+      title: "aaa",
       firstPart: firstPartRef?.current?.value || "",
       middlePart: middlePartRef?.current?.value || "",
       lastPart: lastPartRef?.current?.value || "",
@@ -46,7 +41,7 @@ export default function EditContent() {
       doc(db, "all", uid, "poem1", newContent?.id as string),
       newContent
     );
-    toast.success("詩を書き換えました", {
+    toast.success("川柳を更新しました", {
       duration: 3000,
     });
     router.push("/");
@@ -54,40 +49,59 @@ export default function EditContent() {
   };
 
   return (
-    <>
-      <div>
-        <Toaster />
-        <h1>詩を記録</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            上:
+    <div className={styles.container}>
+      <Toaster />
+      <div className={styles.formContainer}>
+        <Link href="/" className={styles.backLink}>
+          ← 戻る
+        </Link>
+        <h1 className={styles.title}>川柳を編集</h1>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>上の句</label>
             <textarea
               ref={firstPartRef}
-              placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
-            >
-              {firstPart}
-            </textarea>
-            中:
+              defaultValue={firstPart}
+              className={styles.textarea}
+              maxLength={20}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>中の句</label>
             <textarea
               ref={middlePartRef}
-              placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
-            >
-              {middlePart}
-            </textarea>
-            下:
+              defaultValue={middlePart}
+              className={styles.textarea}
+              maxLength={20}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>下の句</label>
             <textarea
               ref={lastPartRef}
-              placeholder="記事詳細を入力"
-              className="rounded-md px-4 py-2 w-full my-2"
+              defaultValue={lastPart}
+              className={styles.textarea}
+              maxLength={20}
+            />
+          </div>
+
+          <div className={styles.buttonGroup}>
+            <button type="submit" className={styles.submitButton}>
+              更新する
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push("/")}
+              className={styles.cancelButton}
             >
-              {lastPart}
-            </textarea>
-          </label>
-          <input type="submit" value="Submit" />
+              キャンセル
+            </button>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
