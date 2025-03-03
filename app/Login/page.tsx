@@ -21,35 +21,38 @@ export default function Login() {
   }, [auth.currentUser?.uid]);
 
   return (
-    <main className={styles.mainContainer}>
-      <div className={styles.container}>
-        <div className={styles.loginBox}>
-          <h2 className={styles.title}>ログイン</h2>
-          <div className={styles.decorativeLine}></div>
+    <div>
+      <Header />
+      <main className={styles.mainContainer}>
+        <div className={styles.container}>
+          <div className={styles.loginBox}>
+            <h2 className={styles.title}>ログイン</h2>
+            <div className={styles.decorativeLine}></div>
 
-          <p className={styles.description}>
-            アカウントを選択してログインしてください
-          </p>
+            <p className={styles.description}>
+              アカウントを選択してログインしてください
+            </p>
 
-          <div className={styles.buttonContainer}>
-            <button className={styles.loginButton} onClick={signInWithGoogle}>
-              <span className={styles.buttonText}>Googleでログイン</span>
-            </button>
+            <div className={styles.buttonContainer}>
+              <button className={styles.loginButton} onClick={signInWithGoogle}>
+                <span className={styles.buttonText}>Googleでログイン</span>
+              </button>
 
-            <button className={styles.loginButton}>
-              <span className={styles.buttonText}>GitHubでログイン</span>
-            </button>
-          </div>
+              <button className={styles.loginButton}>
+                <span className={styles.buttonText}>GitHubでログイン</span>
+              </button>
+            </div>
 
-          <div className={styles.statusContainer}>
-            {lognined ? (
-              <p className={styles.statusText}>ログイン済み</p>
-            ) : (
-              <p className={styles.statusText}>ログインしてください！</p>
-            )}
+            <div className={styles.statusContainer}>
+              {lognined ? (
+                <p className={styles.statusText}>ログイン済み</p>
+              ) : (
+                <p className={styles.statusText}>ログインしてください！</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
