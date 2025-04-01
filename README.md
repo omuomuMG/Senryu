@@ -24,8 +24,18 @@
 [![Deves](https://skillicons.dev/icons?i=typescript,react,next,firebase&perline=5)](https://skillicons.dev)
 
 
-# Getting Started
-First, run the development server:
+# 使い方
+FirebaseのAPIキーを[.env](https://github.com/omuomuMG/book-archive/blob/main/.env) に入力してください.
+```
+NEXT_PUBLIC_FIREBASE_APIKEY=APIKEY
+NEXT_PUBLIC_REACT_APP_FIREBASE_AUTH_DOMAIN=AUTH_DOMAIN
+NEXT_PUBLIC_REACT_APP_FIREBASE_PROJECT_ID=PROJECT_ID
+NEXT_PUBLIC_REACT_APP_FIREBASE_STRAGE_BUCKET=STRAGE_BUCKET
+NEXT_PUBLIC_REACT_APP_FIREBASE_MASSAGING_SENDER_ID=MASSAGING_SENDER_ID
+NEXT_PUBLIC_REACT_APP_FIREBASE_APP_ID=APP_ID
+```
+
+サーバーを起動してください
 ```bash
 npm run dev
 # or
@@ -34,14 +44,4 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
-
-Secound, Describe valid Firebase API key to [.env](https://github.com/omuomuMG/book-archive/blob/main/.env) file.
-```
-NEXT_PUBLIC_FIREBASE_APIKEY=APIKEY
-NEXT_PUBLIC_REACT_APP_FIREBASE_AUTH_DOMAIN=AUTH_DOMAIN
-NEXT_PUBLIC_REACT_APP_FIREBASE_PROJECT_ID=PROJECT_ID
-NEXT_PUBLIC_REACT_APP_FIREBASE_STRAGE_BUCKET=STRAGE_BUCKET
-NEXT_PUBLIC_REACT_APP_FIREBASE_MASSAGING_SENDER_ID=MASSAGING_SENDER_ID
-NEXT_PUBLIC_REACT_APP_FIREBASE_APP_ID=APP_ID
 ```
