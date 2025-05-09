@@ -1,6 +1,5 @@
 # 毎日川柳
 川柳をポストできるCRUD機能+ログイン機能があるWebアプリです。
-自分以外の投稿は見ることができないです
 
 # ホーム画面
 ![ダウンロード](https://github.com/user-attachments/assets/bd7202d0-399d-400e-8a80-039eb8b33791)
@@ -21,7 +20,7 @@
 
 
 # 使用した技術
-[![Deves](https://skillicons.dev/icons?i=typescript,react,next,firebase&perline=5)](https://skillicons.dev)
+[![Deves](https://skillicons.dev/icons?i=typescript,next,firebase&perline=5)](https://skillicons.dev)
 
 
 # 使い方
