@@ -4,8 +4,8 @@ const nextConfig = {
 };
 
 module.exports = {
-  basePath: `/${repoName}`,
-  assetPrefix: `/${repoName}/`,
+  basePath: `/${Senryu}`,
+  assetPrefix: `/${Senryu}/`,
   trailingSlash: true,
 };
 
