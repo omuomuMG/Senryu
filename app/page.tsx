@@ -9,6 +9,8 @@ import { Klee_One } from "next/font/google";
 import { MaterialSymbolsEditSquare } from "./Icons/edit";
 import { MaterialSymbolsDelete } from "./Icons/delete";
 import { useStore } from "./store";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Login from "./Login/page";
 
 const Yuji_Syuku_Font = Klee_One({
   weight: "400",
@@ -76,66 +78,76 @@ export default function Home() {
     setContentToDelete(null);
   };
 
+  const [lognined] = useAuthState(auth);
+
   return (
     <div>
-      <Header />
-      <Link href="/PostContent" className={styles.createButton}>
-        <span className={styles.createButtonIcon}>✎</span>
-        <span className={styles.createButtonText}>川柳を書く</span>
-      </Link>
-      <div className={Yuji_Syuku_Font.className}>
-        <h1 className={styles.contentTitle}>Content</h1>
-        <div className={styles.contents}>
-          {contents.map((content) => (
-            <div key={content.id} className={styles.content}>
-              <div className={styles.poemContent}>
-                <p className={styles.firstPart}>{content.firstPart}</p>
-                <p className={styles.middlePart}>{content.middlePart}</p>
-                <p className={styles.lastPart}>{content.lastPart}</p>
-              </div>
-              <div className={styles.buttonGroup}>
-                <Link href="/EditContent" className={styles.actionLink}>
-                  <button
-                    className={styles.actionButton}
-                    onClick={() => getContent(content)}
-                  >
-                    <MaterialSymbolsEditSquare />
-                  </button>
-                </Link>
-                <button
-                  className={`${styles.actionButton} ${styles.deleteButton}`}
-                  onClick={() => handleDeleteClick(content)}
-                >
-                  <MaterialSymbolsDelete />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      {showDeleteModal && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <h2 className={styles.modalTitle}>削除の確認</h2>
-            <p className={styles.modalText}>
-              この川柳を削除してもよろしいですか？
-            </p>
-            <div className={styles.modalButtons}>
-              <button
-                className={`${styles.modalButton} ${styles.cancelButton}`}
-                onClick={handleDeleteCancel}
-              >
-                キャンセル
-              </button>
-              <button
-                className={`${styles.modalButton} ${styles.confirmButton}`}
-                onClick={handleDeleteConfirm}
-              >
-                削除する
-              </button>
+      {lognined ? (
+        <>
+          <Header />
+          <Link href="/PostContent" className={styles.createButton}>
+            <span className={styles.createButtonIcon}>✎</span>
+            <span className={styles.createButtonText}>川柳を書く</span>
+          </Link>
+          <div className={Yuji_Syuku_Font.className}>
+            <h1 className={styles.contentTitle}>Content</h1>
+            <div className={styles.contents}>
+              {contents.map((content) => (
+                <div key={content.id} className={styles.content}>
+                  <div className={styles.poemContent}>
+                    <p className={styles.firstPart}>{content.firstPart}</p>
+                    <p className={styles.middlePart}>{content.middlePart}</p>
+                    <p className={styles.lastPart}>{content.lastPart}</p>
+                  </div>
+                  <div className={styles.buttonGroup}>
+                    <Link href="/EditContent" className={styles.actionLink}>
+                      <button
+                        className={styles.actionButton}
+                        onClick={() => getContent(content)}
+                      >
+                        <MaterialSymbolsEditSquare />
+                      </button>
+                    </Link>
+                    <button
+                      className={`${styles.actionButton} ${styles.deleteButton}`}
+                      onClick={() => handleDeleteClick(content)}
+                    >
+                      <MaterialSymbolsDelete />
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+          {showDeleteModal && (
+            <div className={styles.modalOverlay}>
+              <div className={styles.modalContent}>
+                <h2 className={styles.modalTitle}>削除の確認</h2>
+                <p className={styles.modalText}>
+                  この川柳を削除してもよろしいですか？
+                </p>
+                <div className={styles.modalButtons}>
+                  <button
+                    className={`${styles.modalButton} ${styles.cancelButton}`}
+                    onClick={handleDeleteCancel}
+                  >
+                    キャンセル
+                  </button>
+                  <button
+                    className={`${styles.modalButton} ${styles.confirmButton}`}
+                    onClick={handleDeleteConfirm}
+                  >
+                    削除する
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <Login />
+        </>
       )}
     </div>
   );
