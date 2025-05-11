@@ -3,10 +3,10 @@ import { doc, updateDoc } from "firebase/firestore";
 import { useRef } from "react";
 import { db } from "../Firebase";
 import toast, { Toaster } from "react-hot-toast";
-import { useStore } from "@/app/page";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./EditContent.module.css";
+import { useStore } from "../store";
 
 export default function EditContent() {
   const firstPartRef = useRef<HTMLTextAreaElement | null>(null);
