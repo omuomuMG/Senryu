@@ -9,6 +9,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
 import styles from "./Login.module.css";
 import Header from "../Header/header";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const GoogleProvider = new GoogleAuthProvider();
@@ -24,9 +26,23 @@ export default function Login() {
 
   const [lognined] = useAuthState(auth);
 
+  const router = useRouter();
+
   useEffect(() => {
     localStorage.setItem("uid", JSON.stringify(auth.currentUser?.uid));
   }, [auth.currentUser?.uid]);
+
+  const redirect = () => {
+    toast.loading("リダイレクトします", {
+      duration: 3000,
+    });
+    toast.success("成功しました", {
+      duration: 3000,
+    });
+
+    router.push("/");
+    router.refresh();
+  };
 
   return (
     <div>
@@ -53,7 +69,10 @@ export default function Login() {
 
             <div className={styles.statusContainer}>
               {lognined ? (
-                <p className={styles.statusText}>ログイン済み</p>
+                <>
+                  <p className={styles.statusText}>ログイン済み</p>
+                  {redirect()}
+                </>
               ) : (
                 <p className={styles.statusText}>ログインしてください！</p>
               )}
