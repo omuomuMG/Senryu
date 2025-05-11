@@ -91,6 +91,12 @@ export default function Home() {
           </Link>
           <div className={Yuji_Syuku_Font.className}>
             <h1 className={styles.contentTitle}>Content</h1>
+            {contents.length === 0 && (
+              <div className={styles.noContentMessage}>
+                <p>まだ川柳がありません</p>
+                <p>川柳を書いてみましょう！</p>
+              </div>
+            )}
             <div className={styles.contents}>
               {contents.map((content) => (
                 <div key={content.id} className={styles.content}>

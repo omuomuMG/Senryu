@@ -280,3 +280,10 @@
     padding: 0.6rem 1.2rem;
   }
 }
+
+.noContentMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 2rem;
+}
