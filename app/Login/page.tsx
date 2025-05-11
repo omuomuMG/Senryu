@@ -1,5 +1,9 @@
 "use client";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  GithubAuthProvider,
+} from "firebase/auth";
 import { auth } from "../Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
@@ -8,16 +12,20 @@ import Header from "../Header/header";
 
 export default function Login() {
   const GoogleProvider = new GoogleAuthProvider();
+  const GitHubProvider = new GithubAuthProvider();
 
   const signInWithGoogle = async () => {
     await signInWithPopup(auth, GoogleProvider);
+  };
+
+  const signInWithGitHub = async () => {
+    await signInWithPopup(auth, GitHubProvider);
   };
 
   const [lognined] = useAuthState(auth);
 
   useEffect(() => {
     localStorage.setItem("uid", JSON.stringify(auth.currentUser?.uid));
-    console.log(localStorage.getItem("uid"));
   }, [auth.currentUser?.uid]);
 
   return (
@@ -38,7 +46,7 @@ export default function Login() {
                 <span className={styles.buttonText}>Googleでログイン</span>
               </button>
 
-              <button className={styles.loginButton}>
+              <button className={styles.loginButton} onClick={signInWithGitHub}>
                 <span className={styles.buttonText}>GitHubでログイン</span>
               </button>
             </div>
