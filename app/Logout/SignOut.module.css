@@ -32,7 +32,7 @@
 .buttonText {
   font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
     "Hiragino Mincho ProN", "HG明朝E", serif;
-  color: #4a3831;
+  color: #2355a5;
 }
 
 .signOutButton:hover {
@@ -44,18 +44,9 @@
   transform: translateY(0);
 }
 
-.statusContainer {
-  background-color: #f7f3e9;
-  border: 1px solid #8b4513;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-top: 1rem;
-}
-
 .statusText {
   font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
     "Hiragino Mincho ProN", "HG明朝E", serif;
-  color: #4a3831;
   margin: 0;
   font-size: 0.9rem;
   text-align: center;
