@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out",
-    "export": "next export"
+    "lint": "next lint"
   },
   "homepage": "https://ユーザー名.github.io/Senryu",
   "dependencies": {
