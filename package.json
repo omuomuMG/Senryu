@@ -10,6 +10,7 @@
     "deploy": "next build && touch out/.nojekyll && gh-pages -d out",
     "export": "next export"
   },
+  "homepage": "https://ユーザー名.github.io/Senryu",
   "dependencies": {
     "firebase": "^10.12.5",
     "next": "14.2.4",
